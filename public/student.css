@@ -1,0 +1,12 @@
+*{
+    border: 1px solid red;
+}
+
+/* @media screen and (max-width:425px){
+    .container-home{
+       color: red;
+       margin: 0;
+       display: none;
+    }
+} */
+

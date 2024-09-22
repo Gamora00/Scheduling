@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/adminUI.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<style>
+  *{
+ 
+  }
+</style>
+</head>
+<body>
+ 
+     <nav class="navbar bg-warning fixed-top">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center">
+        <a class="navbar-brand" id="logo" href="#">STI Schedule</a>
+        <div class="container-home d-flex offcanvas offcanvasNavbar">
+            <a class="nav-link active " href="#">Home</a>
+            <a class="nav-link active " href="#">Schedule</a>
+        </div>
+    </div>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Archive
+            </a>
+            <ul class="dropdown-menu">
+               <li class="nav-item">
+            <a class="nav-link active" href="/teacherArchive">Teacher</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/studentArchive">Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/adminArchive">Admin</a>
+          </li>  
+               
+         <li class="nav-item">
+            <a class="nav-link active" href="/archive">Schedule</a>
+          </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Create Account
+            </a>
+            <ul class="dropdown-menu">
+               <li class="nav-item">
+            <a class="nav-link active" href="/teacherRegister">Teacher</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/register">Student</a>
+          </li>     
+         <li class="nav-item">
+            <a class="nav-link active" href="/adminRegister">Admin</a>
+          </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Accounts
+            </a>
+            <ul class="dropdown-menu">
+               <li class="nav-item">
+            <a class="nav-link active" href="/teacherAccount">Teacher</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/admin">Student</a>
+          </li>       
+         <li class="nav-item">
+            <a class="nav-link active" href="/adminAccounts">Admin</a>
+          </li>
+            </ul>
+          </li>
+          
+        </ul>
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Middle Name</th>
+                <th scope="col">Strand</th>
+                <th scope="col">GradeLevel</th>
+                <th scope="col">Section</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {{#each studentsData}}
+            <tr>
+                <th scope="row">{{studentID}}</th>
+                <td>{{firstName}}</td>
+                <td>{{lastName}}</td>
+                <td>{{middleName}}</td>
+                <td>{{studentStrand}}</td>
+                <td>{{gradeLevel}}</td>
+                <td>{{studentSection}}</td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal{{@index}}">
+                        View
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal{{@index}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal{{@index}}Label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="modal{{@index}}Label">Details</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                        <div class="form-container row g-1">
+                                            <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="Username" placeholder="username" value="{{studentUsername}}">
+                                            <label for="Username">Username</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="studentID" placeholder="studentID" value="{{studentID}}">
+                                            <label for="studentID">student ID</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="firstName" placeholder="firstName" value="{{firstName}}">
+                                            <label for="studentID">First Name</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="lastName" placeholder="lastName" value="{{lastName}}">
+                                            <label for="studentID">Last Name</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="middleName" placeholder="middleName" value="{{middleName}}">
+                                            <label for="middleName">Middle Name</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="studentStrand" placeholder="studentStrand" value="{{studentStrand}}">
+                                            <label for="studentStrand">Strand</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="gradeLevel" placeholder="gradeLevel" value="{{gradeLevel}}">
+                                            <label for="gradeLevel">Grade Level</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="studentSection" placeholder="studentSection" value="{{studentSection}}">
+                                            <label for="studentSection">Section</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="studentSection" placeholder="studentSection" value="{{studentSection}}">
+                                            <label for="studentSection">Section</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="studentAddress" placeholder="studentAddress" value="{{studentAddress}}">
+                                        <label for="studentAddress">Address</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="parentsName" placeholder="parentsName" value="{{parentsName}}">
+                                            <label for="parentsName">Parents Name</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="email" readonly class="form-control-plaintext" id="parentNumber" placeholder="parentNumber" value="{{parentNumber}}">
+                                        <label for="parentNumber">Parents #</label>
+                                        </div>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{studentID}}">
+                        Edit
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="editModal{{studentID}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModal{{teacher_id}}Label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="editModal{{studentID}}Label">Edit Details</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="form-container">
+                                    <form action="/auth/studentEdit" class="row g-1" method="post">
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="text" class="form-control" id="teacherUsername{{studentID}}" name="username" placeholder="teacherUsername" value="{{studentUsername}}">
+                                            <label for="teacherUsername{{studentID}}">Username</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="password" class="form-control" id="Password{{studentID}}" name="password" placeholder="Password">
+                                            <label for="Password{{studentID}}">Password</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="text" readonly class="form-control" name="ID" id="teacher_id_edit{{studentID}}" placeholder="teacher_id" value="{{studentID}}">
+                                            <label for="teacher_id_edit{{studentID}}">student ID</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="text" class="form-control" id="first_name_edit{{studentID}}" name="firstName" placeholder="first_name" value="{{firstName}}">
+                                            <label for="first_name_edit{{studentID}}">First Name</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="text" class="form-control" id="last_name_edit{{studentID}}" name="lastName" placeholder="last_name" value="{{lastName}}">
+                                            <label for="last_name_edit{{studentID}}">Last Name</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="text" class="form-control" id="subject_edit{{studentID}}" name="middleName" placeholder="middleName" value="{{middleName}}">
+                                            <label for="subject_edit{{studentID}}">Middle Name</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="text" class="form-control" id="subject_edit{{studentID}}" name="studentStrand" placeholder="studentStrand" value="{{studentStrand}}">
+                                            <label for="subject_edit{{studentID}}">Strand</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="text" class="form-control" id="subject_edit{{studentID}}" name="gradeLevel" placeholder="gradeLevel" value="{{gradeLevel}}">
+                                            <label for="subject_edit{{studentID}}">gradeLevel</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="text" class="form-control" id="subject_edit{{studentID}}" name="studentSection" placeholder="studentSection" value="{{studentSection}}">
+                                            <label for="subject_edit{{studentID}}">Section</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="text" class="form-control" id="subject_edit{{studentID}}" name="parentsName" placeholder="gradeLevel" value="{{parentsName}}">
+                                            <label for="subject_edit{{studentID}}">parent Name</label>
+                                        </div>
+                                        <div class="form-floating mb-3 col-md-5">
+                                            <input type="text" class="form-control" id="subject_edit{{studentID}}" name="parentNumber" placeholder="parentNumber" value="{{parentNumber}}">
+                                            <label for="subject_edit{{studentID}}">parent Number</label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                    {{#if successful}}
+                                      <div class="alert alert-success" role="alert">
+                                         {{successful}}
+                                      </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#deleteModal{{studentId}}">
+                        Archive
+                    </button>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal{{studentId}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModal{{teacher_id}}Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteModal{{studentId}}Label">Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <p class="p-3">Are you sure you want to delete this account?</p>
+            <div class="modal-footer">
+                <form action="/auth/archiveStudent" method="post">
+                    <input type="hidden" name="studentId" value="{{studentID}}">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+                </td>
+                
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+{{#if message}}
+<h4 class="alert alert-danger mt-4">{{message}}</h4>
+  {{else}}
+  {{#if successfully}}
+<h4 class="alert alert-success mt-4">{{successfully}}</h4>
+{{/if}}
+{{/if}}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+/* *{
+    border: 1px solid red;
+}
+ */
+
+ #logo{
+    color: #ffff;
+    font-weight: 500;
+ }
+
+ .container{
+    margin-top: 100px;
+}
